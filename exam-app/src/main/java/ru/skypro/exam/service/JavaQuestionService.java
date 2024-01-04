@@ -16,23 +16,23 @@ public class JavaQuestionService implements QuestionService {
     }
 
     @Override
-    public void addQuestion(String Questions, String Answer) {
-
+    public void addQuestion(String text, String answer) {
+        Question question = new Question(text, answer);
+        questions.add(question);
     }
 
     @Override
     public void removeQuestion(Question question) {
-
+        questions.remove(question);
     }
 
     @Override
     public Collection<Question> getAllQuestions() {
-        return null;
+        return questions;
     }
 
     @Override
     public Question getRandomQuestion() {
-
         Random random = new Random();
         int index = random.nextInt(questions.size());
         return questions.get(index);
