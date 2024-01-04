@@ -1,4 +1,5 @@
 package ru.skypro.exam;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.skypro.exam.general.Question;
@@ -39,7 +40,7 @@ public class JavaQuestionServiceTest {
     public void getAllQuestions() {
         questionService.addQuestion("Where are you?", "I'm at home.");
         Collection<Question> questions = questionService.getAllQuestions();
-        assertEquals(1,questions.size());
+        assertEquals(1, questions.size());
     }
 
     @Test
@@ -49,5 +50,4 @@ public class JavaQuestionServiceTest {
         Collection<Question> questions = questionService.getAllQuestions();
         assertEquals(2, questions.size());
     }
-
 }
