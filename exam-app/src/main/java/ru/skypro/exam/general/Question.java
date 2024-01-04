@@ -1,36 +1,35 @@
 package ru.skypro.exam.general;
 
 public class Question {
-    String Questions;
-    String Answer;
+    String questions;
+    String answer;
 
     public String getQuestions() {
-        return Questions;
+        return questions;
     }
 
     public String getAnswer() {
-        return Answer;
+        return answer;
     }
 
     public void setQuestions(String questions) {
-        Questions = questions;
+        questions = questions;
     }
 
     public void setAnswer(String answer) {
-        Answer = answer;
+        answer = answer;
     }
 
     @Override
     public String toString() {
         return "Question{" +
-                "Questions='" + Questions + '\'' +
-                ", Answer='" + Answer + '\'' +
+                "Questions='" + questions + '\'' +
+                ", Answer='" + answer + '\'' +
                 '}';
     }
 
-    public Question(String questions, String answer) {
-        Questions = questions;
-        Answer = answer;
-
+    public Question(String questions, String answers) {
+        questions = questions;
+        answer = answers;
     }
 }

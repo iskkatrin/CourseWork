@@ -27,8 +27,8 @@ public class ExaminerServiceImplTest {
 
     @Test
     void getQuestions_ShouldReturnListOfQuestions_WhenEnoughQuestionsAvailable() throws BadRequestException {
-        Question question1 = new Question("Question 1");
-        Question question2 = new Question("Question 2");
+        Question question1 = new Question("Question 1", "answer 1");
+        Question question2 = new Question("Question 2", "answer 2");
         when(questionService.getRandomQuestion()).thenReturn(question1, question2);
 
         List<Question> result = examinerService.getQuestions(2);
@@ -40,10 +40,9 @@ public class ExaminerServiceImplTest {
     @Test
     void getQuestions_ShouldThrowBadRequestException_WhenNotEnoughQuestionsAvailable() {
 
-        when(questionService.getRandomQuestion()).thenReturn(new Question("Question 1"));
+        when(questionService.getRandomQuestion()).thenReturn(new Question("Question 1", "answer 2"));
 
         assertThrows(BadRequestException.class, () -> examinerService.getQuestions(2));
-        // Проверка, что метод getRandomQuestion() был вызван как минимум дважды у questionService
         verify(questionService, atLeast(2)).getRandomQuestion();
     }
 }

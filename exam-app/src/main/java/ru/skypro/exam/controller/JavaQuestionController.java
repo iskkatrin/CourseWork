@@ -25,7 +25,7 @@ public class JavaQuestionController {
 
     @DeleteMapping("/remove")
     public void removeQuestion(@RequestParam("question") String questionText, @RequestParam("answer") String answerText) {
-        Question questionToRemove = new Question(questionText);
+        Question questionToRemove = new Question(questionText, answerText);
         questionService.removeQuestion(questionToRemove);
     }
 
