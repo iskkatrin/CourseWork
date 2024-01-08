@@ -1,8 +1,8 @@
 package ru.skypro.exam;
 
-import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.skypro.exam.exception.NotEnoughQuestions;
 import ru.skypro.exam.general.Question;
 import ru.skypro.exam.service.ExaminerService;
 import ru.skypro.exam.service.ExaminerServiceImpl;
@@ -26,10 +26,11 @@ public class ExaminerServiceImplTest {
     }
 
     @Test
-    void getQuestions_ShouldReturnListOfQuestions_WhenEnoughQuestionsAvailable() throws BadRequestException {
+    void getQuestions_ShouldReturnListOfQuestions_WhenEnoughQuestionsAvailable() throws NotEnoughQuestions {
         Question question1 = new Question("Question 1", "answer 1");
         Question question2 = new Question("Question 2", "answer 2");
         when(questionService.getRandomQuestion()).thenReturn(question1, question2);
+        when(questionService.getAllQuestions()).thenReturn(Arrays.asList(question1, question2));
 
         List<Question> result = examinerService.getQuestions(2);
 
@@ -39,10 +40,11 @@ public class ExaminerServiceImplTest {
 
     @Test
     void getQuestions_ShouldThrowBadRequestException_WhenNotEnoughQuestionsAvailable() {
-
+        Question question1 = new Question("question 1", "answer 1");
         when(questionService.getRandomQuestion()).thenReturn(new Question("Question 1", "answer 2"));
 
-        assertThrows(BadRequestException.class, () -> examinerService.getQuestions(2));
-        verify(questionService, atLeast(2)).getRandomQuestion();
+        assertThrows(NotEnoughQuestions.class, () -> {
+            examinerService.getQuestions(2);
+        });
     }
 }
