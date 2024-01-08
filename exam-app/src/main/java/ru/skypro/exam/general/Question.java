@@ -1,8 +1,22 @@
 package ru.skypro.exam.general;
 
+import java.util.Objects;
+
 public class Question {
     String questions;
     String answer;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Question question)) return false;
+        return Objects.equals(getQuestions(), question.getQuestions()) && Objects.equals(getAnswer(), question.getAnswer());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getQuestions(), getAnswer());
+    }
 
     public String getQuestions() {
         return questions;

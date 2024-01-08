@@ -1,5 +1,6 @@
 package ru.skypro.exam.service;
 
+import org.springframework.stereotype.Service;
 import ru.skypro.exam.general.Question;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+@Service
 public class JavaQuestionService implements QuestionService {
 
     private List<Question> questions;
